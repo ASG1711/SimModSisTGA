@@ -2,7 +2,7 @@ package com.unisinos.petrinet.models;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "transition")
-public class Transition extends Spot {
+@XmlRootElement(name = "initialMarking")
+public class Marking extends Mark{
 
 }

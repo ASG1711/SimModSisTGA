@@ -1,33 +1,52 @@
 package com.unisinos.petrinet.models;
 
-import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Page {
-
-    @Getter @Setter
+    @Setter
     @NonNull
     private String id;
 
-    @Getter @Setter
+    @Setter
     @NonNull
-    @XmlElement
-    private String name;
+    private Name name;
 
-    @Getter @Setter
-    @XmlElement(name = "place")
-    private List<Place> places = new ArrayList<Place>();
+    @Setter
+    private List<Place> places;
 
-    @Getter @Setter
-    @XmlElement(name = "transition")
-    private List<Transition> transitions = new ArrayList<Transition>();
+    @Setter
+    private List<Transition> transitions;
 
-    @Getter @Setter
-    @XmlElement(name = "arc")
-    private List<Arc> arcs = new ArrayList<Arc>();
+    @Setter
+    private List<Arc> arcs;
+
+    @XmlAttribute(name="id")
+    public String getId() {
+        return id;
+    }
+
+    @XmlElement(name="name")
+    public Name getName() {
+        return name;
+    }
+
+    @XmlElement(name="place")
+    public List<Place> getPlaces() {
+        return places;
+    }
+
+    @XmlElement(name="transition")
+    public List<Transition> getTransitions() {
+        return transitions;
+    }
+
+    @XmlElement(name="arc")
+    public List<Arc> getArcs() {
+        return arcs;
+    }
 }

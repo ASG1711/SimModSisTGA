@@ -5,14 +5,13 @@ import lombok.Setter;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class Place extends Spot {
-
+public class Mark {
     @Setter
     @NonNull
-    private Marking marking;
+    private Integer value;
 
-    @XmlElement(name="initialMarking")
-    public Marking getMarking() {
-        return marking;
+    @XmlElement(name="text")
+    public Integer getValue() {
+        return value;
     }
 }
