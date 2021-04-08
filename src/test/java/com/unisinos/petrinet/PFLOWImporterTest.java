@@ -4,11 +4,11 @@ import org.junit.Test;
 
 import javax.xml.bind.JAXBException;
 
-public class PNMLImporterTest {
-    private PNMLImporter importer = new PNMLImporter();
+public class PFLOWImporterTest {
+    private PFLOWImporter importer = new PFLOWImporter();
 
     @Test
     public void importPNMLTest() throws JAXBException {
-        importer.importPNML("philo.pnml");
+        importer.importPNML("filosofos.pflow");
     }
 }

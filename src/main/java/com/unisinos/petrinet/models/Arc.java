@@ -1,51 +1,45 @@
 package com.unisinos.petrinet.models;
 
-import lombok.NonNull;
 import lombok.Setter;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "arc")
-public class Arc {
+public class Arc extends Element{
 
     @Setter
-    @NonNull
-    private String id;
+    private Element source;
 
     @Setter
-    @NonNull
-    private Spot source;
+    private Element destination;
 
     @Setter
-    @NonNull
-    private Spot target;
+    private Integer multiplicity;
 
     @Setter
-    @NonNull
-    private Inscription inscription;
-
-    @XmlAttribute(name="id")
-    public String getId() {
-        return id;
-    }
+    private String type;
 
     @XmlIDREF
-    @XmlAttribute(name="source", required = true)
-    public Spot getSource() {
+    @XmlElement(name="sourceId")
+    public Element getSource() {
         return source;
     }
 
     @XmlIDREF
-    @XmlAttribute(name="target", required = true)
-    public Spot getTarget() {
-        return target;
+    @XmlElement(name="destinationId")
+    public Element getDestination() {
+        return destination;
     }
 
-    @XmlElement(name="inscription")
-    public Inscription getInscription() {
-        return inscription;
+    @XmlElement(name="multiplicity")
+    public Integer getMultiplicity() {
+        return multiplicity;
+    }
+
+    @XmlElement(name="type")
+    public String getType() {
+        return type;
     }
 }

@@ -1,29 +1,25 @@
 package com.unisinos.petrinet.models;
 
-import lombok.NonNull;
 import lombok.Setter;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlID;
 
-public class Spot {
+public class Element {
     @Setter
-    @NonNull
     private String id;
 
     @Setter
-    @NonNull
-    private Name name;
+    private String label;
 
-    @XmlAttribute
     @XmlID
+    @XmlElement(name="id")
     public String getId() {
         return id;
     }
 
-    @XmlElement(name="name")
-    public Name getName() {
-        return name;
+    @XmlElement(name = "label")
+    public String getLabel() {
+        return label;
     }
 }

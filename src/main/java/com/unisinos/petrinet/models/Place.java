@@ -1,18 +1,18 @@
 package com.unisinos.petrinet.models;
 
-import lombok.NonNull;
 import lombok.Setter;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
-public class Place extends Spot {
+@XmlRootElement(name = "place")
+public class Place extends Element {
 
     @Setter
-    @NonNull
-    private Marking marking;
+    private Integer token;
 
-    @XmlElement(name="initialMarking")
-    public Marking getMarking() {
-        return marking;
+    @XmlElement(name="tokens")
+    public Integer getToken() {
+        return token;
     }
 }

@@ -7,16 +7,17 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
-public class PNMLImporter {
+public class PFLOWImporter {
     public Document importPNML(String filePath) throws JAXBException {
         JAXBContext jc = JAXBContext.newInstance(Document.class);
 
         Unmarshaller unmarshaller = jc.createUnmarshaller();
         File resource = new File(getResourceFile(filePath));
-        return (Document) unmarshaller.unmarshal(resource);
+        Document document = (Document) unmarshaller.unmarshal(resource);
+        return document;
     }
 
     private String getResourceFile(String filePath) {
-        return PNMLImporter.class.getClassLoader().getResource(filePath).getFile();
+        return PFLOWImporter.class.getClassLoader().getResource(filePath).getFile();
     }
 }

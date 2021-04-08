@@ -1,39 +1,36 @@
 package com.unisinos.petrinet.models;
 
-import lombok.NonNull;
 import lombok.Setter;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
-@XmlRootElement(name = "net")
-public class Net {
+@XmlRootElement(name = "subnet")
+public class Net extends Element{
 
     @Setter
-    @NonNull
-    private String id;
+    private List<Place> places;
 
     @Setter
-    private Name name;
+    private List<Transition> transitions;
 
     @Setter
-    private List<Page> pages;
+    private List<Arc> arcs;
 
-    @XmlAttribute(name="id")
-    public String getId() {
-        return id;
+    @XmlElement(name="place")
+    public List<Place> getPlaces() {
+        return places;
     }
 
-    @XmlElement(name="name")
-    public Name getName() {
-        return name;
+    @XmlElement(name="transition")
+    public List<Transition> getTransitions() {
+        return transitions;
     }
 
-    @XmlElement(name="page")
-    public List<Page> getPages() {
-        return pages;
+    @XmlElement(name="arc")
+    public List<Arc> getArcs() {
+        return arcs;
     }
 
 }
