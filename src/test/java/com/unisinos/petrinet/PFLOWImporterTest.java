@@ -9,6 +9,6 @@ public class PFLOWImporterTest {
 
     @Test
     public void importPNMLTest() throws JAXBException {
-        importer.importPNML("filosofos.pflow");
+        importer.importPNML("simple_flow.pflow");
     }
 }
