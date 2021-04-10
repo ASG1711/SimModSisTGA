@@ -1,4 +1,4 @@
-package com.unisinos.petrinet.service;
+package com.unisinos.petrinet.cycleservice;
 
 import com.unisinos.petrinet.models.Document;
 import com.unisinos.petrinet.models.Net;
@@ -14,6 +14,7 @@ public class DocumentCycleService extends AbstractCycleService <Document> {
     public void runCycle(){
 
         List<Net> nets = getElement().getNets();
-        nets.stream().forEach(net -> new NetCycleService(net).runCycle());
+        nets.stream()
+                .forEach(net -> new NetCycleService(net).runCycle());
     }
 }

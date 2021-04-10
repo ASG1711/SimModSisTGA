@@ -1,4 +1,4 @@
-package com.unisinos.petrinet.service;
+package com.unisinos.petrinet.cycleservice;
 
 import com.unisinos.petrinet.models.Net;
 import com.unisinos.petrinet.models.Transition;
@@ -14,6 +14,12 @@ public class NetCycleService extends AbstractCycleService <Net>{
     @Override
     void runCycle() {
         List<Transition> transitions = getElement().getTransitions();
-        transitions.stream().forEach(transition -> new TransitionCycleService(transition).runCycle());
+        transitions.stream()
+                .filter(Transition::isEnabled)
+                .forEach(this::runTransitionCycle);
+    }
+
+    private void runTransitionCycle(Transition transition) {
+        new TransitionCycleService(transition).runCycle();
     }
 }

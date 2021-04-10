@@ -1,5 +1,7 @@
 package com.unisinos.petrinet;
 
+import com.unisinos.petrinet.models.Document;
+import com.unisinos.petrinet.pflowimport.PFLOWImporter;
 import org.junit.Test;
 
 import javax.xml.bind.JAXBException;
@@ -9,6 +11,7 @@ public class PFLOWImporterTest {
 
     @Test
     public void importPNMLTest() throws JAXBException {
-        importer.importPNML("simple_flow.pflow");
+        Document document = importer.importPNML("filosofos.pflow");
+        System.out.println(document.toString());
     }
 }

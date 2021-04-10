@@ -1,4 +1,4 @@
-package com.unisinos.petrinet.service;
+package com.unisinos.petrinet.cycleservice;
 
 import lombok.Getter;
 import lombok.Setter;

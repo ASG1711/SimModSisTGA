@@ -17,5 +17,10 @@ public class Document extends Element{
         return nets;
     }
 
-
+    @Override
+    public String toString() {
+        return nets.stream()
+                .map(Object::toString)
+                .reduce("",(partial, net) -> partial + net);
+    }
 }

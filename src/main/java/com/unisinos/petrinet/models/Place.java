@@ -15,4 +15,9 @@ public class Place extends Element {
     public Integer getToken() {
         return token;
     }
+
+    @Override
+    public String toString() {
+        return String.format("ID: %s MARCA: %s \n", getId(), getToken());
+    }
 }
