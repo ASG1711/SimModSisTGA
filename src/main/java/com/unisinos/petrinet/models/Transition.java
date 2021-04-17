@@ -17,8 +17,18 @@ public class Transition extends Element {
     @Getter
     private List<AbstractOrderedArc> arcs = new ArrayList<>();
 
+    private boolean enabled;
+
     public Boolean isEnabled() {
-        return getSourceArcs().stream().allMatch(PlaceToTransitionArc::isEnabled);
+        return enabled;
+    }
+
+    public void setEnabled() {
+        enabled = getSourceArcs().stream().allMatch(PlaceToTransitionArc::isEnabled);
+    }
+
+    public void disable(){
+        enabled = false;
     }
 
     public List<PlaceToTransitionArc> getSourceArcs() {

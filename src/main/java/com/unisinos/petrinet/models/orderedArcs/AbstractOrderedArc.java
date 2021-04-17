@@ -14,4 +14,5 @@ public abstract class AbstractOrderedArc extends Arc {
 
     abstract public Place getPlace();
     abstract public Transition getTransition();
+    abstract public void move();
 }

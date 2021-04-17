@@ -19,4 +19,9 @@ public class TransitionToPlaceArc extends AbstractOrderedArc{
     public Transition getTransition() {
         return (Transition) getSource();
     }
+
+    @Override
+    public void move() {
+        getPlace().setToken(getPlace().getToken() + getMultiplicity());
+    }
 }
