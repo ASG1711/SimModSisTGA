@@ -19,7 +19,7 @@ public class Arc extends Element{
     private Integer multiplicity;
 
     @Setter
-    private String type;
+    private ArcType type;
 
     @XmlIDREF
     @XmlElement(name="sourceId")
@@ -39,7 +39,7 @@ public class Arc extends Element{
     }
 
     @XmlElement(name="type")
-    public String getType() {
+    public ArcType getType() {
         return type;
     }
 }

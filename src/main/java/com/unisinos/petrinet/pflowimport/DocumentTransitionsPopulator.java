@@ -8,11 +8,12 @@ import com.unisinos.petrinet.models.orderedArcs.TransitionToPlaceArc;
 
 public class DocumentTransitionsPopulator {
     public void populate(Document document) {
-        document.getNets().forEach(this::populateTransitionsWithArcs);
+        document.getNets().forEach(this::populateNet);
     }
 
-    private void populateTransitionsWithArcs(Net net) {
+    private void populateNet(Net net) {
         net.getArcs().forEach(this::addArcToTransition);
+        net.getTransitions().forEach(Transition::setEnabled);
     }
 
     private void addArcToTransition(com.unisinos.petrinet.models.Arc arc) {
