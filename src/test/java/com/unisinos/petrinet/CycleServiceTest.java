@@ -25,7 +25,7 @@ public class CycleServiceTest {
 
     @Test
     public void runSimpleFlowFullCycle() throws JAXBException {
-        Document document = importer.importDocument("simple_flow.pflow");
+        Document document = importDocument("simple_flow.pflow");
         runCycles(document, SIMPLE_FLOW_FULL_CYCLE);
         Transition transition4 = document.getNets().get(0).getTransitions().get(1);
         Assert.assertTrue(transition4.isEnabled());
