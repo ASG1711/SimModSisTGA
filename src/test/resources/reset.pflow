@@ -9,7 +9,7 @@
         <y>0</y>
         <label/>
         <place>
-            <id>41</id>
+            <id>1</id>
             <x>-261</x>
             <y>-242</y>
             <label/>
@@ -17,7 +17,7 @@
             <isStatic>false</isStatic>
         </place>
         <place>
-            <id>43</id>
+            <id>3</id>
             <x>-250</x>
             <y>-90</y>
             <label/>
@@ -25,21 +25,21 @@
             <isStatic>false</isStatic>
         </place>
         <transition>
-            <id>42</id>
+            <id>2</id>
             <x>-256</x>
             <y>-166</y>
             <label/>
         </transition>
         <arc>
             <type>regular</type>
-            <sourceId>42</sourceId>
-            <destinationId>43</destinationId>
+            <sourceId>2</sourceId>
+            <destinationId>3</destinationId>
             <multiplicity>1</multiplicity>
         </arc>
         <arc>
             <type>reset</type>
-            <sourceId>41</sourceId>
-            <destinationId>42</destinationId>
+            <sourceId>1</sourceId>
+            <destinationId>2</destinationId>
             <multiplicity>1</multiplicity>
         </arc>
     </subnet>
