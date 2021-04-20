@@ -17,6 +17,10 @@ public class Transition extends Element {
     @Getter
     private List<AbstractOrderedArc> arcs = new ArrayList<>();
 
+    @Setter
+    @Getter
+    private List<Transition> conflictingTransitions = new ArrayList<>();
+
     private boolean enabled;
 
     public Boolean isEnabled() {
