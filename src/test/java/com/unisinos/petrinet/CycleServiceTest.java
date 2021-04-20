@@ -1,11 +1,10 @@
 package com.unisinos.petrinet;
 
-import com.unisinos.petrinet.services.CycleService;
 import com.unisinos.petrinet.models.Document;
 import com.unisinos.petrinet.models.Transition;
 import com.unisinos.petrinet.pflowimport.PFLOWImporter;
+import com.unisinos.petrinet.services.CycleService;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import javax.xml.bind.JAXBException;
