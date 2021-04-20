@@ -1,5 +1,6 @@
 package com.unisinos.petrinet.services;
 
+import com.unisinos.petrinet.models.ArcType;
 import com.unisinos.petrinet.models.Document;
 import com.unisinos.petrinet.models.Net;
 import com.unisinos.petrinet.models.Transition;
@@ -15,19 +16,46 @@ public class CycleService {
         List<Net> nets = document.getNets();
         for (Net net : nets) {
             for (Transition transition : net.getTransitions()) {
-                if(transition.isEnabled()) {
-                    for (PlaceToTransitionArc arc : transition.getSourceArcs()) {
-                        arc.move();
-                    }
-                    for (TransitionToPlaceArc arc : transition.getDestinationArcs()) {
-                        arc.move();
-                    }
-                    transition.disable();
-                }
+                moveMarks(transition);
             }
             for (Transition transition : net.getTransitions()){
-                transition.setEnabled();
+                transition.setEnabledVerifyingArcs();
             }
         }
+    }
+
+    private void moveMarks(Transition transition) {
+        while (transition.isEnabled()) {
+            movePlaceToTransition(transition);
+            moveTransitionToPlace(transition);
+            transition.setEnabledVerifyingArcs();
+            if(hasOnlyNonMoveTypeArcs(transition)){
+                transition.disable();
+            }
+        }
+    }
+
+    private void movePlaceToTransition(Transition transition) {
+        for (PlaceToTransitionArc arc : transition.getSourceArcs()) {
+            arc.move();
+        }
+    }
+
+    private void moveTransitionToPlace(Transition transition) {
+        for (TransitionToPlaceArc arc : transition.getDestinationArcs()) {
+            arc.move();
+        }
+    }
+
+    private boolean hasOnlyNonMoveTypeArcs(Transition transition) {
+        return transition.getSourceArcs().stream().allMatch(arc -> isReset(arc) || isInhibitor(arc));
+    }
+
+    private boolean isInhibitor(PlaceToTransitionArc arc) {
+        return arc.getType().equals(ArcType.INHIBITOR);
+    }
+
+    private boolean isReset(PlaceToTransitionArc arc) {
+        return arc.getType().equals(ArcType.RESET);
     }
 }

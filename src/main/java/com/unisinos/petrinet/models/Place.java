@@ -18,6 +18,6 @@ public class Place extends Element {
 
     @Override
     public String toString() {
-        return String.format("ID: %s MARCA: %s \n", getId(), getToken());
+        return String.format("ID: %s LABEL: %s MARCA: %s \n", getId(), getLabel(), getToken());
     }
 }

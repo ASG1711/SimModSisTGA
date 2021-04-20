@@ -11,7 +11,7 @@ public class PFLOWImporterTest {
 
     @Test
     public void importPNMLTest() throws JAXBException {
-        Document document = importer.importPNML("filosofos.pflow");
+        Document document = importer.importPNML("exemplo_enunciado.pflow");
         System.out.println(document.toString());
     }
 }

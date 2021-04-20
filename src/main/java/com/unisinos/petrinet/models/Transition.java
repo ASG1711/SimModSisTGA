@@ -23,7 +23,7 @@ public class Transition extends Element {
         return enabled;
     }
 
-    public void setEnabled() {
+    public void setEnabledVerifyingArcs() {
         enabled = getSourceArcs().stream().allMatch(PlaceToTransitionArc::isEnabled);
     }
 
@@ -47,6 +47,6 @@ public class Transition extends Element {
 
     @Override
     public String toString() {
-        return String.format("ID: %s HABILITADA: %s \n", getId(), isEnabled().toString());
+        return String.format("ID: %s LABEL: %s HABILITADA: %s \n", getId(), getLabel(), isEnabled().toString());
     }
 }

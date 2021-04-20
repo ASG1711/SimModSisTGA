@@ -13,7 +13,7 @@ public class DocumentTransitionsPopulator {
 
     private void populateNet(Net net) {
         net.getArcs().forEach(this::addArcToTransition);
-        net.getTransitions().forEach(Transition::setEnabled);
+        net.getTransitions().forEach(Transition::setEnabledVerifyingArcs);
     }
 
     private void addArcToTransition(com.unisinos.petrinet.models.Arc arc) {

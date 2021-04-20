@@ -18,18 +18,44 @@ public class CycleServiceTest {
     private CycleService cycleService;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         importer = new PFLOWImporter();
         cycleService = new CycleService();
     }
 
     @Test
-    public void runSimpleFlowFullCycle() throws JAXBException {
+    public void runSimpleFlowFullCycleTest() throws JAXBException {
         Document document = importDocument("simple_flow.pflow");
         runCycles(document, SIMPLE_FLOW_FULL_CYCLE);
         Transition transition4 = document.getNets().get(0).getTransitions().get(1);
         Assert.assertTrue(transition4.isEnabled());
     }
+
+    @Test
+    public void runInhibitorCycleTest() throws JAXBException {
+        Document document = importDocument("inhibitor.pflow");
+        runCycles(document, INHIBITOR_FULL_CYCLE);
+        Assert.assertTrue(areTransitionsDisabled(document));
+    }
+
+    @Test
+    public void runResetCycleTest() throws JAXBException {
+        Document document = importDocument("reset.pflow");
+        runCycles(document, 1);
+        Integer firstPlaceTokens = document.getNets().get(0).getPlaces().get(0).getToken();
+        Integer secondPlaceTokens = document.getNets().get(0).getPlaces().get(1).getToken();
+        Assert.assertEquals(NO_TOKEN, firstPlaceTokens);
+        Assert.assertEquals(Integer.valueOf(1), secondPlaceTokens);
+    }
+
+    @Test
+    public void runTransitionConsumptionLoopTest() throws JAXBException {
+        Document document = importDocument("full_places_consumption.pflow");
+        runCycles(document, 1);
+        Integer firstBaseTokens = document.getNets().get(0).getPlaces().get(0).getToken();
+        Assert.assertEquals(NO_TOKEN, firstBaseTokens);
+    }
+
     private void runCycles(Document document, Integer cycles) {
         for (int i = 0; i < cycles; i++) {
             cycleService.runCycle(document);
@@ -45,21 +71,6 @@ public class CycleServiceTest {
         System.out.println(document.toString());
         System.out.println("----------------------------------------------------------");
         return document;
-    }
-
-    @Test
-    public void runInhibitorCycle() throws JAXBException {
-        Document document = importDocument("inhibitor.pflow");
-        runCycles(document, INHIBITOR_FULL_CYCLE);
-        Assert.assertTrue(areTransitionsDisabled(document));
-    }
-
-    @Test
-    public void runResetCycle() throws JAXBException {
-        Document document = importDocument("reset.pflow");
-        runCycles(document, 1);
-        Integer firstBaseTokens = document.getNets().get(0).getPlaces().get(0).getToken();
-        Assert.assertEquals(NO_TOKEN, firstBaseTokens);
     }
 
     private boolean areTransitionsDisabled(Document document) {
