@@ -6,8 +6,10 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.util.logging.Logger;
 
 public class PFLOWImporter {
+    Logger logger = Logger.getLogger("com.unisinos.petrinet.pflowimport.PFLOWImporter");
     private DocumentTransitionsPopulator documentTransitionsPopulator = new DocumentTransitionsPopulator();
 
     public Document importPNML(String filePath) throws JAXBException {
@@ -17,6 +19,7 @@ public class PFLOWImporter {
         File resource = new File(getResourceFile(filePath));
         Document document = (Document) unmarshaller.unmarshal(resource);
         documentTransitionsPopulator.populate(document);
+        logger.info(document.toString());
         return document;
     }
 

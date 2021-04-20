@@ -13,7 +13,7 @@
             <x>-17</x>
             <y>-322</y>
             <label/>
-            <tokens>2</tokens>
+            <tokens>3</tokens>
             <isStatic>false</isStatic>
         </place>
         <place>
@@ -24,48 +24,22 @@
             <tokens>0</tokens>
             <isStatic>false</isStatic>
         </place>
-        <place>
-            <id>29</id>
-            <x>-13</x>
-            <y>-69</y>
-            <label/>
-            <tokens>0</tokens>
-            <isStatic>false</isStatic>
-        </place>
         <transition>
             <id>26</id>
             <x>-14</x>
             <y>-259</y>
             <label/>
         </transition>
-        <transition>
-            <id>28</id>
-            <x>-14</x>
-            <y>-138</y>
-            <label/>
-        </transition>
         <arc>
             <type>regular</type>
-            <sourceId>28</sourceId>
-            <destinationId>29</destinationId>
+            <sourceId>25</sourceId>
+            <destinationId>26</destinationId>
             <multiplicity>1</multiplicity>
-        </arc>
-        <arc>
-            <type>regular</type>
-            <sourceId>27</sourceId>
-            <destinationId>28</destinationId>
-            <multiplicity>2</multiplicity>
         </arc>
         <arc>
             <type>regular</type>
             <sourceId>26</sourceId>
             <destinationId>27</destinationId>
-            <multiplicity>1</multiplicity>
-        </arc>
-        <arc>
-            <type>regular</type>
-            <sourceId>25</sourceId>
-            <destinationId>26</destinationId>
             <multiplicity>1</multiplicity>
         </arc>
     </subnet>
