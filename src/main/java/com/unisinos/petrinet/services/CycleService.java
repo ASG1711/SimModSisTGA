@@ -34,7 +34,7 @@ public class CycleService {
         List<Net> nets = document.getNets();
         for (Net net : nets) {
             for (Transition transition : net.getTransitions()) {
-                moveMarks(transition);
+                transition.moveMarks();
             }
             for (Transition transition : net.getTransitions()){
                 transition.setEnabledVerifyingArcs();
@@ -42,42 +42,6 @@ public class CycleService {
         }
         logger.info(document.toString());
     }
-
-    private void moveMarks(Transition transition) {
-        while (transition.isEnabled()) {
-            movePlaceToTransition(transition);
-            moveTransitionToPlace(transition);
-            transition.setEnabledVerifyingArcs();
-            if(hasOnlyNonMoveTypeArcs(transition)){
-                transition.disable();
-            }
-        }
-    }
-
-    private void movePlaceToTransition(Transition transition) {
-        for (PlaceToTransitionArc arc : transition.getSourceArcs()) {
-            arc.move();
-        }
-    }
-
-    private void moveTransitionToPlace(Transition transition) {
-        for (TransitionToPlaceArc arc : transition.getDestinationArcs()) {
-            arc.move();
-        }
-    }
-
-    private boolean hasOnlyNonMoveTypeArcs(Transition transition) {
-        return transition.getSourceArcs().stream().allMatch(arc -> isReset(arc) || isInhibitor(arc));
-    }
-
-    private boolean isInhibitor(PlaceToTransitionArc arc) {
-        return arc.getType().equals(ArcType.INHIBITOR);
-    }
-
-    private boolean isReset(PlaceToTransitionArc arc) {
-        return arc.getType().equals(ArcType.RESET);
-    }
-
     private boolean allTransitionsDisabled(Document document) {
         return document.getNets().stream().allMatch(net -> net.getTransitions().stream().noneMatch(Transition::isEnabled));
     }
