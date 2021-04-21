@@ -16,7 +16,7 @@ public class PresentationTest {
 
     @Test
     public void runRequisitesExample() throws JAXBException {
-        Document document = importer.importPNML("exemplo_enunciado.pflow");
+        Document document = importer.importPflow("exemplo_enunciado.pflow");
         Integer totalCycles = cycleService.getCyclesQuantityToFinish(document);
         Assert.assertEquals(REQUISITE_EXAMPLE_FULL_CYCLE, totalCycles);
     }

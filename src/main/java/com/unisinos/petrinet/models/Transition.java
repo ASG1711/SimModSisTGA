@@ -9,6 +9,7 @@ import lombok.Setter;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @XmlRootElement(name = "transition")
@@ -31,6 +32,10 @@ public class Transition extends Element {
         enabled = getSourceArcs().stream().allMatch(PlaceToTransitionArc::isEnabled);
     }
 
+    public List<Place> getSourcePlaces() {
+        return getSourceArcs().stream().map(placeToTransitionArc -> (Place) placeToTransitionArc.getSource()).collect(Collectors.toList());
+    }
+
     public void disable(){
         enabled = false;
     }
@@ -49,14 +54,44 @@ public class Transition extends Element {
                 .collect(Collectors.toList());
     }
 
-    public void moveMarks() {
+    public void move() {
+        if(getConflictingTransitions().isEmpty()){
+            moveWhileEnabled();
+        } else {
+            moveConflicts();
+        }
+    }
+
+    private void moveConflicts(){
+        while(getConflictingTransitions().stream().anyMatch(Transition::isEnabled)){
+            List<Transition> enabledTransitions = getConflictingTransitions()
+                    .stream()
+                    .filter(Transition::isEnabled)
+                    .collect(Collectors.toList());
+            Random random = new Random();
+            int randomIndex = random.nextInt(enabledTransitions.size());
+            enabledTransitions.get(randomIndex).doMove();
+            enabledTransitions.forEach(Transition::resetEnabledForLoop);
+        }
+    }
+
+    private void moveWhileEnabled() {
         while (isEnabled()) {
-            movePlaceToTransition();
-            moveTransitionToPlace();
+            doMove();
+        }
+    }
+
+    private void doMove() {
+        movePlaceToTransition();
+        moveTransitionToPlace();
+        resetEnabledForLoop();
+    }
+
+    private void resetEnabledForLoop() {
+        if(hasOnlyNonMoveTypeArcs()){
+            disable();
+        } else {
             setEnabledVerifyingArcs();
-            if(hasOnlyNonMoveTypeArcs()){
-                disable();
-            }
         }
     }
 

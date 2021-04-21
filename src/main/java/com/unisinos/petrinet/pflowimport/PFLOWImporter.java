@@ -12,7 +12,7 @@ public class PFLOWImporter {
     Logger logger = Logger.getLogger("com.unisinos.petrinet.pflowimport.PFLOWImporter");
     private DocumentTransitionsPopulator documentTransitionsPopulator = new DocumentTransitionsPopulator();
 
-    public Document importPNML(String filePath) throws JAXBException {
+    public Document importPflow(String filePath) throws JAXBException {
         JAXBContext jc = JAXBContext.newInstance(Document.class);
 
         Unmarshaller unmarshaller = jc.createUnmarshaller();

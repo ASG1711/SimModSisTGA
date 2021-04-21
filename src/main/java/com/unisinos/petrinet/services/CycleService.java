@@ -1,11 +1,8 @@
 package com.unisinos.petrinet.services;
 
-import com.unisinos.petrinet.models.ArcType;
 import com.unisinos.petrinet.models.Document;
 import com.unisinos.petrinet.models.Net;
 import com.unisinos.petrinet.models.Transition;
-import com.unisinos.petrinet.models.orderedArcs.PlaceToTransitionArc;
-import com.unisinos.petrinet.models.orderedArcs.TransitionToPlaceArc;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -34,7 +31,7 @@ public class CycleService {
         List<Net> nets = document.getNets();
         for (Net net : nets) {
             for (Transition transition : net.getTransitions()) {
-                transition.moveMarks();
+               transition.move();
             }
             for (Transition transition : net.getTransitions()){
                 transition.setEnabledVerifyingArcs();

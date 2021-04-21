@@ -1,8 +1,6 @@
 package com.unisinos.petrinet.pflowimport;
 
-import com.unisinos.petrinet.models.Document;
-import com.unisinos.petrinet.models.Net;
-import com.unisinos.petrinet.models.Transition;
+import com.unisinos.petrinet.models.*;
 import com.unisinos.petrinet.models.orderedArcs.PlaceToTransitionArc;
 import com.unisinos.petrinet.models.orderedArcs.TransitionToPlaceArc;
 
@@ -22,17 +20,23 @@ public class DocumentTransitionsPopulator {
         });
     }
 
-    // TODO: TA COMPARANDO OS ARCOS E TEM QUE COMPARAR OS PLACES
     private void populateConflictingTransitions(List<Transition> transitionList, Transition currentTransition) {
+        List<Place> currentPlaces = currentTransition.getSourcePlaces();
         transitionList.forEach(transition -> {
-            if(hasCommonSources(currentTransition, transition)){
+            if(!transition.equals(currentTransition) && hasCommonSources(currentPlaces, transition)){
                 currentTransition.getConflictingTransitions().add(transition);
             }
         });
+        if(!currentTransition.getConflictingTransitions().isEmpty()) addSelfAsConflict(currentTransition);
     }
 
-    private boolean hasCommonSources(Transition currentTransition, Transition transition) {
-        return Collections.disjoint(currentTransition.getSourceArcs(), transition.getSourceArcs());
+    private boolean addSelfAsConflict(Transition currentTransition) {
+        return currentTransition.getConflictingTransitions().add(currentTransition);
+    }
+
+    private boolean hasCommonSources(List<Place> currentPlaces, Transition transition) {
+        List<Place> comparingPlaces = transition.getSourcePlaces();
+        return !Collections.disjoint(currentPlaces, comparingPlaces);
     }
 
     private void addArcToTransition(com.unisinos.petrinet.models.Arc arc) {
