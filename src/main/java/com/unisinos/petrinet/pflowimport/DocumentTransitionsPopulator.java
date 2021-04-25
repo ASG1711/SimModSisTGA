@@ -39,7 +39,7 @@ public class DocumentTransitionsPopulator {
         return !Collections.disjoint(currentPlaces, comparingPlaces);
     }
 
-    private void addArcToTransition(com.unisinos.petrinet.models.Arc arc) {
+    private void addArcToTransition(Arc arc) {
         if (arc.getDestination() instanceof Transition) ((Transition) arc.getDestination()).getArcs().add(new PlaceToTransitionArc(arc));
         if (arc.getSource() instanceof Transition) ((Transition) arc.getSource()).getArcs().add(new TransitionToPlaceArc(arc));
     }

@@ -37,10 +37,10 @@ public class Net extends Element{
     @Override
     public String toString() {
         return places.stream()
-                .map(Object::toString)
+                .map(Place::toString)
                 .reduce("Places: \n",(partial,place)-> partial + place)
                 + "\n" +
-                transitions.stream().map(Objects::toString)
+                transitions.stream().map(Transition::toString)
                 .reduce("Transitions: \n", (partial,transition) -> partial+transition);
     }
 }

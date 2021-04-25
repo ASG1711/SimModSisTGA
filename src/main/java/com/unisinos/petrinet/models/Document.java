@@ -20,7 +20,7 @@ public class Document extends Element{
     @Override
     public String toString() {
         return nets.stream()
-                .map(Object::toString)
+                .map(Net::toString)
                 .reduce("",(partial, net) -> partial + net);
     }
 }

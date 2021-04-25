@@ -27,7 +27,7 @@ public class CycleService {
         }
     }
 
-    public void runCycle(Document document){
+    private void runCycle(Document document){
         List<Net> nets = document.getNets();
         for (Net net : nets) {
             for (Transition transition : net.getTransitions()) {
