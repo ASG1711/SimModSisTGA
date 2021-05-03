@@ -14,16 +14,16 @@ public class CycleService {
         Integer totalCycles = 0;
         while (!allTransitionsDisabled(document)){
             totalCycles++;
-            logger.info(String.format("CYCLE: %s",totalCycles));
             runCycle(document);
+            logger.info(String.format("CYCLE: %s",totalCycles));
         }
         return totalCycles;
     }
 
     public void runCycles(Document document, Integer cycles) {
         for (int i = 0; i < cycles; i++) {
-            logger.info(String.format("CYCLE: %s",i));
             runCycle(document);
+            logger.info(String.format("CYCLE: %s",i));
         }
     }
 
