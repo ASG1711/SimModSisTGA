@@ -5,3 +5,5 @@ A proposta da aplicação tem por base cumprir às demandas do trabalho do Grau 
 Originalmente o desenvolvimento deve se dar na linguagem de programação Java, utilizando por IDE primariamente o ambiente proposto pela aplicação IntelliJ.
 
 A rede será montada através da leitura de um arquivo de descrição de rede no formato PFLOW - [Petri Flow](https://petriflow.com/)
+
+Grupo formado por: Anderson Silveira Goularte, Fabiane Kuhn, Nadine Schneider e Rafael Correa
