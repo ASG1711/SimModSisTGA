@@ -1,7 +1,5 @@
 package com.unisinos.petrinet.models;
 
-import lombok.Setter;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -9,16 +7,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "arc")
 public class Arc extends Element{
 
-    @Setter
     private Element source;
 
-    @Setter
     private Element destination;
 
-    @Setter
     private Integer multiplicity;
 
-    @Setter
     private ArcType type;
 
     @XmlIDREF
@@ -41,5 +35,21 @@ public class Arc extends Element{
     @XmlElement(name="type")
     public ArcType getType() {
         return type;
+    }
+
+    public void setSource(Element source) {
+        this.source = source;
+    }
+
+    public void setDestination(Element destination) {
+        this.destination = destination;
+    }
+
+    public void setMultiplicity(Integer multiplicity) {
+        this.multiplicity = multiplicity;
+    }
+
+    public void setType(ArcType type) {
+        this.type = type;
     }
 }

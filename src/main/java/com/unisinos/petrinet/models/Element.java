@@ -1,22 +1,26 @@
 package com.unisinos.petrinet.models;
 
-import lombok.Setter;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlID;
 
 public class Element {
 
-    @Setter
     private String id;
 
-    @Setter
     private String label;
 
     @XmlID
     @XmlElement(name="id")
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     @XmlElement(name = "label")

@@ -3,8 +3,6 @@ package com.unisinos.petrinet.models;
 import com.unisinos.petrinet.models.orderedArcs.AbstractOrderedArc;
 import com.unisinos.petrinet.models.orderedArcs.PlaceToTransitionArc;
 import com.unisinos.petrinet.models.orderedArcs.TransitionToPlaceArc;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
@@ -14,12 +12,9 @@ import java.util.stream.Collectors;
 
 @XmlRootElement(name = "transition")
 public class Transition extends Element {
-    @Setter
-    @Getter
+
     private List<AbstractOrderedArc> arcs = new ArrayList<>();
 
-    @Setter
-    @Getter
     private List<Transition> conflictingTransitions = new ArrayList<>();
 
     private boolean enabled;
@@ -117,6 +112,26 @@ public class Transition extends Element {
 
     private boolean isReset(PlaceToTransitionArc arc) {
         return arc.getType().equals(ArcType.RESET);
+    }
+
+    public List<AbstractOrderedArc> getArcs() {
+        return arcs;
+    }
+
+    public void setArcs(List<AbstractOrderedArc> arcs) {
+        this.arcs = arcs;
+    }
+
+    public List<Transition> getConflictingTransitions() {
+        return conflictingTransitions;
+    }
+
+    public void setConflictingTransitions(List<Transition> conflictingTransitions) {
+        this.conflictingTransitions = conflictingTransitions;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     @Override

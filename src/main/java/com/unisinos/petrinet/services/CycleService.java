@@ -17,6 +17,7 @@ public class CycleService {
             runCycle(document);
             logger.info(String.format("CYCLE: %s",totalCycles));
         }
+        document.setFinished(true);
         return totalCycles;
     }
 

@@ -1,22 +1,16 @@
 package com.unisinos.petrinet.models;
 
-import lombok.Setter;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
-import java.util.Objects;
 
 @XmlRootElement(name = "subnet")
 public class Net extends Element{
 
-    @Setter
     private List<Place> places;
 
-    @Setter
     private List<Transition> transitions;
 
-    @Setter
     private List<Arc> arcs;
 
     @XmlElement(name="place")
@@ -32,6 +26,18 @@ public class Net extends Element{
     @XmlElement(name="arc")
     public List<Arc> getArcs() {
         return arcs;
+    }
+
+    public void setPlaces(List<Place> places) {
+        this.places = places;
+    }
+
+    public void setTransitions(List<Transition> transitions) {
+        this.transitions = transitions;
+    }
+
+    public void setArcs(List<Arc> arcs) {
+        this.arcs = arcs;
     }
 
     @Override

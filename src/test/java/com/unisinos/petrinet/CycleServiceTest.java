@@ -59,4 +59,13 @@ public class CycleServiceTest {
         Place place4 = document.getNets().get(0).getPlaces().get(3);
         Assert.assertEquals(TOKEN_LIMIT,place4.getToken());
     }
+
+    @Test
+    public void getPlaceById() throws JAXBException {
+        Document document = importer.importPflow("full_places_consumption.pflow");
+        cycleService.getCyclesQuantityToFinish(document);
+        document.setPlaceTokenById("25",3);
+        Integer totalCycles = cycleService.getCyclesQuantityToFinish(document);
+        Assert.assertEquals(Integer.valueOf(1), totalCycles);
+    }
 }
