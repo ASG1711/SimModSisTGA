@@ -53,6 +53,7 @@ public class Document extends Element{
         Place placeById = getPlaceById(id);
         placeById.setToken(tokens);
         resetTransitionsStatus();
+        finished = false;
     }
 
     @Override
